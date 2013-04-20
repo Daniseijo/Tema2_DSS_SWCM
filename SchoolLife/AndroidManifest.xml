@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.clase.schoollife"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <!--
+         NUEVA ACTIVIDAD      
+        @string/title_inicio    es una referencia que tiene que ser declarada en values/string.xml  
+        PantallaDeInicio es el nombre de la Clase que va a manejar la actividad de la pantalla de inicio   
+        La accion pasa a MAIN
+        -->         
+        <activity
+            android:name="SplashActivity"
+            android:label="@string/app_name" android:theme="@style/StartTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--
+        La actividad principal pasa a la categoria DEFAULT  
+        El name lo colocamos haciendo referencia al paquete que pertenece 
+        La accion pasa a una accion definida por nosotros !=  MAIN            
+        -->          
+        <activity
+            android:name="com.clase.schoollife.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.clase.schoollife.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name="CreateSubject"></activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,1 @@
+Aplicación School Life para Android

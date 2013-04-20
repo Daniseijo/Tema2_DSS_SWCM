@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add">Añadir</string>
+    <string name="app_name">School Life</string>
+    <string name="settings">Opciones</string>
+    <string name="no_subject">Pulsa + para añadir una Nueva Asignatura</string>
+    <string name="edit">Editar</string>
+    <string name="help">Ayuda</string>
+    <string name="classroom">Aula</string>
+    <string name="subject">Asignatura</string>
+    <string name="professor">Profesor</string>
+    <string name="abreviature">Abreviatura</string>
+    <string name="new_subject_title">Nueva Asignatura</string>
+    <string name="confirm_button">Confirmar</string>
+    <string name="delete">Borrar</string>
+</resources>
