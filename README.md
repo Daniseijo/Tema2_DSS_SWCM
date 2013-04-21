@@ -1,1 +1,1 @@
-Aplicaci�n School Life para Android
+﻿Aplicación School Life para Android
