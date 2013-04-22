@@ -314,7 +314,7 @@ public class SLDbAdapter {
     }
     
     public ArrayList<Long> taskOfSubject(long idSubject){
-    	ArrayList<Long> idTasks = new ArrayList();
+    	ArrayList<Long> idTasks = new ArrayList<Long>();
     	Cursor mCursor = fetchAllTasks();
     	idTasks.add(mCursor.getLong(mCursor.getColumnIndexOrThrow(SLDbAdapter.KEY_SUBJECT)));
     	return idTasks;
