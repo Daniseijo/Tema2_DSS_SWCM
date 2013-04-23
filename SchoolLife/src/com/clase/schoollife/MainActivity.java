@@ -19,6 +19,7 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_main);
 		mDbHelper = new SLDbAdapter(this);
         mDbHelper.open();
+        mDbHelper.createSubject("Prueba", "AD", "Juan Gomez", "B2");
         fillData();
         registerForContextMenu(getListView());
 	}
@@ -28,11 +29,10 @@ public class MainActivity extends ListActivity {
         startManagingCursor(subjectsCursor);
         // Create an array to specify the fields we want to display in the list (only NAME)
         String[] from = new String[]{SLDbAdapter.KEY_NAME};
-        
         // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.text1};
+        int[] to = new int[]{R.id.name_entry};
         // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter subjects= new SimpleCursorAdapter(this, R.layout.activity_main, subjectsCursor, from, to);
+        SimpleCursorAdapter subjects= new SimpleCursorAdapter(this, R.layout.subjects_row, subjectsCursor, from, to);
         setListAdapter(subjects);
     }
 
