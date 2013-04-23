@@ -64,7 +64,7 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView2"
         android:ems="10"
-        android:hint="@string/abreviature"
+        android:hint="@string/abbreviation"
         android:inputType="textCapCharacters" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_alignLeft="@+id/editText2"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="10dp"
-        android:text="@string/abreviature" />
+        android:text="@string/abbreviation" />
 
     <TextView
         android:id="@+id/textView5"
