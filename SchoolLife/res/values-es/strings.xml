@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="add">Añadir</string>
     <string name="app_name">School Life</string>
     <string name="settings">Opciones</string>
+    <string name="add">Añadir</string>
     <string name="no_subject">Pulsa + para añadir una Nueva Asignatura</string>
     <string name="edit">Editar</string>
     <string name="help">Ayuda</string>
@@ -13,4 +13,14 @@
     <string name="new_subject_title">Nueva Asignatura</string>
     <string name="confirm_button">Confirmar</string>
     <string name="delete">Borrar</string>
+    <string name="new_task_title">Nueva Tarea</string>
+    <string name="task">Tarea</string>
+    <string name="title">Título</string>
+    <string name="explanation">Explicación</string>
+    <string name="date">Fecha</string>
+    <string name="mark">Nota</string>
+    <string name="revision">Revisión</string>
+    <string name="revision_date">Fecha de revisión</string>
+    <string name="completed">Completado</string>
+    <string name="feelings">Sensaciones</string>
 </resources>
