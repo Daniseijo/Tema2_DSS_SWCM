@@ -34,9 +34,10 @@ public final class R {
         public static final int editText2=0x7f090006;
         public static final int editText3=0x7f090007;
         public static final int editText4=0x7f090008;
-        public static final int menu_add=0x7f09000a;
-        public static final int menu_help=0x7f09000c;
-        public static final int settings=0x7f09000b;
+        public static final int menu_add=0x7f09000b;
+        public static final int menu_help=0x7f09000d;
+        public static final int settings=0x7f09000c;
+        public static final int text1=0x7f09000a;
         public static final int textView1=0x7f090001;
         public static final int textView2=0x7f090002;
         public static final int textView3=0x7f090004;
@@ -48,6 +49,7 @@ public final class R {
         public static final int activity_create_task=0x7f030001;
         public static final int activity_main=0x7f030002;
         public static final int activity_splash=0x7f030003;
+        public static final int subjects_row=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;
