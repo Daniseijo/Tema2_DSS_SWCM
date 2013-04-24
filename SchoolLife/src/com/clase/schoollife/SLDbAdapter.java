@@ -43,7 +43,7 @@ public class SLDbAdapter {
     
     //Tasks table creation statement
     private static final String DATABASE_CREATE_TASK =
-    		"CREATE TABLE task(taskid integer not null, type text not null, title text not null, explanation text not null, date date not null, mark real, revision integer not null, revisiondate date, completed integer not null, feelingsstars integer, feeling text, tasksubject integer not null, FOREIGN KEY(tasksubject) REFERENCES subject(subjectid));";
+    		"CREATE TABLE task(taskid integer not null, type integer not null, title text not null, explanation text not null, date date not null, mark real, revision integer not null, revisiondate date, completed integer not null, feelingsstars integer, feelings text, tasksubject integer not null, CONSTRAINT PK_task_taskid PRIMARY KEY(taskid),FOREIGN KEY(tasksubject) REFERENCES subject(subjectid));";
 
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE_SUBJECT = "subject";
@@ -63,7 +63,7 @@ public class SLDbAdapter {
         	db.execSQL("PRAGMA foreign_keys=ON;");
             db.execSQL(DATABASE_CREATE_SUBJECT);
             db.execSQL(DATABASE_CREATE_TASK);
-            //db.execSQL("CREATE INDEX taskindex ON index(tasksubject);");
+            db.execSQL("CREATE INDEX taskindex ON task(tasksubject);");
         }
 
         @Override
@@ -144,7 +144,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return taskId or -1 if failed
      */
-    public long createTask(String type, String title, String explanation, String date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
+    public long createTask(int type, String title, String explanation, String date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
     	int revision=1;
         int completed=1;
     	if(!rev){
@@ -207,7 +207,7 @@ public class SLDbAdapter {
      * @return Cursor over all tasks
      */
     public Cursor fetchAllTasks() {
-        return mDb.query(DATABASE_TABLE_TASK, new String[] {KEY_TASKID+" _id", KEY_TYPE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, null, null, null, null, null);
+        return mDb.query(DATABASE_TABLE_TASK, new String[] {KEY_TASKID+" _id", KEY_TYPE, KEY_TITLE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, null, null, null, null, null);
     }
     
     /**
@@ -279,7 +279,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return true if the task was successfully updated, false otherwise
      */
-    public boolean updateTask(long taskId, String type, String title, String explanation, String date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
+    public boolean updateTask(long taskId, int type, String title, String explanation, String date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
         int revision=1;
         int completed=1;
     	if(!rev){

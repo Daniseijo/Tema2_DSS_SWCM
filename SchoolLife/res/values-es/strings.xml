@@ -4,6 +4,7 @@
     <string name="settings">Opciones</string>
     <string name="add">Añadir</string>
     <string name="no_subject">Pulsa + para añadir una Nueva Asignatura</string>
+    <string name="no_task">Pulsa + para añadir una nueva Tarea</string>
     <string name="edit">Editar</string>
     <string name="help">Ayuda</string>
     <string name="classroom">Aula</string>
@@ -23,4 +24,5 @@
     <string name="revision_date">Fecha de revisión</string>
     <string name="completed">Completado</string>
     <string name="feelings">Sensaciones</string>
+    <string name="delete_all">Delete All</string>
 </resources>
