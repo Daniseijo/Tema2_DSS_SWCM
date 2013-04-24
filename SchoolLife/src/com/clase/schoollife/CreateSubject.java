@@ -50,7 +50,8 @@ public class CreateSubject extends Activity {
 		});
 	}
 	
-    private void populateFields() {
+    @SuppressWarnings("deprecation")
+	private void populateFields() {
         if (mSubjectId != null) {
             Cursor subject = mDbHelper.fetchSubject(mSubjectId);
             startManagingCursor(subject);

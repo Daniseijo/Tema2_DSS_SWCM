@@ -33,6 +33,7 @@ public class MainActivity extends ListActivity {
         registerForContextMenu(getListView());
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void fillData() {
 		Cursor subjectsCursor = mDbHelper.fetchAllSubjects();
         startManagingCursor(subjectsCursor);

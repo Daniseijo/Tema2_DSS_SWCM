@@ -1,18 +1,13 @@
 package com.clase.schoollife;
 
-import android.os.Bundle;
-import android.app.Activity;
-import android.database.Cursor;
-import android.view.Menu;
-import android.widget.SimpleCursorAdapter;
 import android.app.ListActivity;
-import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.widget.ListView;
-import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.view.Menu;
+import android.view.View;
+import android.widget.SimpleCursorAdapter;
 
 public class SubjectActivity extends ListActivity {
 	
@@ -26,14 +21,13 @@ public class SubjectActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subject);
 		setTitle(R.string.app_name);
-		Bundle extras = getIntent().getExtras();
-		long subjectId=extras.getLong(SLDbAdapter.KEY_SUBJECTID);
 		mDbHelper = new SLDbAdapter(this);
 	    mDbHelper.open();
 	    fillData();
 	    registerForContextMenu(getListView());
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void fillData() {
 		Cursor tasksCursor = mDbHelper.fetchAllTasks();
         startManagingCursor(tasksCursor);
