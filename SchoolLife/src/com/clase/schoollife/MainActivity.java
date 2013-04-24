@@ -19,7 +19,6 @@ public class MainActivity extends ListActivity {
 		setContentView(R.layout.activity_main);
 		mDbHelper = new SLDbAdapter(this);
         mDbHelper.open();
-        mDbHelper.createSubject("Prueba", "AD", "Juan Gomez", "B2");
         fillData();
         registerForContextMenu(getListView());
 	}
@@ -60,4 +59,9 @@ public class MainActivity extends ListActivity {
         startActivityForResult(i, ACTIVITY_CREATE);
     }
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        fillData();
+    }
 }

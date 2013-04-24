@@ -217,7 +217,7 @@ public class SLDbAdapter {
      * @return Cursor positioned to matching subject, if found
      * @throws SQLException if note could not be found/retrieved
      */
-    public Cursor fetchSubjects(long subjectId) throws SQLException {
+    public Cursor fetchSubject(long subjectId) throws SQLException {
         Cursor mCursor = mDb.query(true, DATABASE_TABLE_SUBJECT, new String[] {KEY_SUBJECTID, KEY_NAME, KEY_ABBREVIATION, KEY_PROFESSOR, KEY_CLASSROOM}, KEY_SUBJECTID + "=" + subjectId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -232,7 +232,7 @@ public class SLDbAdapter {
      * @return Cursor positioned to matching task, if found
      * @throws SQLException if note could not be found/retrieved
      */
-    public Cursor fetchTasks(long taskId) throws SQLException {
+    public Cursor fetchTask(long taskId) throws SQLException {
         Cursor mCursor = mDb.query(true, DATABASE_TABLE_TASK, new String[] {KEY_TASKID, KEY_TYPE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, KEY_TASKID + "=" + taskId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
