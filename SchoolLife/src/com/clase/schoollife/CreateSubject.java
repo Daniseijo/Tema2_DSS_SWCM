@@ -24,7 +24,7 @@ public class CreateSubject extends Activity {
 		mDbHelper.open();
 		
 		setContentView(R.layout.activity_create);
-		setTitle(R.string.app_name);
+		setTitle(R.string.new_subject_title);
 		
 		mNameText= (EditText) findViewById(R.id.edit_subject);
 		mAbbreviationText= (EditText) findViewById(R.id.edit_abbreviation);

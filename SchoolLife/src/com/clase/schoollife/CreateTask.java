@@ -2,10 +2,16 @@ package com.clase.schoollife;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
-public class CreateTask extends Activity {
+public class CreateTask extends Activity implements OnItemSelectedListener {
 	
 	private Long mTaskId;
 	private int mTypeInt;
@@ -27,7 +33,7 @@ public class CreateTask extends Activity {
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
 		setContentView(R.layout.activity_create_task);
-		setTitle(R.string.app_name);
+		setTitle(R.string.new_task_title);
 		
 		//R.id. de prueba
 		mTitleText= (EditText) findViewById(R.id.edit_subject);
@@ -35,7 +41,27 @@ public class CreateTask extends Activity {
 		mDateText= (EditText) findViewById(R.id.edit_professor);
 		mRevisionDateText= (EditText) findViewById(R.id.edit_classroom);
 		mFeelingsText= (EditText) findViewById(R.id.edit_abbreviation);
+		Spinner spinner = (Spinner) findViewById(R.id.task_type);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.tasks_array, android.R.layout.simple_spinner_item);
+		// Specify the layout to use when the list of choices appears
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(this);
 	}
+	
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        // Dependiendo de lo seleccionado se activan unos u otros.
+		Log.i("Posición ID", ""+ pos);
+    }
+
+	@Override
+    public void onNothingSelected(AdapterView<?> parent) {
+		// Nothing
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

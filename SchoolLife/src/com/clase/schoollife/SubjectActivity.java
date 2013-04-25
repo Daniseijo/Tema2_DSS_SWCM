@@ -30,7 +30,6 @@ public class SubjectActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subject);
-		setTitle(R.string.app_name);
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
 		
@@ -38,8 +37,10 @@ public class SubjectActivity extends ListActivity {
 		if(mSubjectId == null){
 			Bundle extras = getIntent().getExtras();
 			mSubjectId = extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID) : null;
+			Cursor subject = mDbHelper.fetchSubject(mSubjectId);
+			setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
 		}
-		
+
 	    fillData();
 	    registerForContextMenu(getListView());
 	}
@@ -74,7 +75,6 @@ public class SubjectActivity extends ListActivity {
 	            startActivityForResult(i, ACTIVITY_TASK);
 	            return true;
 	        case R.id.menu_edit:
-	        	//it doesn't work
 	        	i = new Intent(this, CreateSubject.class);
 	        	i.putExtra(SLDbAdapter.KEY_SUBJECTID, mSubjectId);
 	            startActivityForResult(i, ACTIVITY_EDIT);

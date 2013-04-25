@@ -28,15 +28,9 @@
     <string name="title_activity_subject">Title Activity Subject</string>
     <string name="delete_all">Delete All</string>
 
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+    <string-array name="tasks_array">
+        <item>Exam</item>
+        <item>Exercise</item>
     </string-array>
 
     <string name="title_activity_task">TaskActivity</string>

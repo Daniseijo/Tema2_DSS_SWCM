@@ -5,23 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CreateSubject" >
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="23dp"
-        android:text="@string/new_subject_title"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView5"
         android:layout_marginTop="14dp"
         android:text="@string/subject" />
     <EditText

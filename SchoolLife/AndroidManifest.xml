@@ -54,6 +54,7 @@
             android:name="com.clase.schoollife.TaskActivity"
             android:label="@string/title_activity_task" >
         </activity>
+        <activity android:name="CreateTask"></activity>
     </application>
 
 </manifest>
