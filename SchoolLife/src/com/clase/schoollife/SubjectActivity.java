@@ -16,7 +16,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 public class SubjectActivity extends ListActivity {
 	
 	private SLDbAdapter mDbHelper;
-	private long mSubjectId;
+	private Long mSubjectId;
 	
 	private static final int ACTIVITY_EDIT=0;
 	private static final int ACTIVITY_TASK=1;
@@ -33,14 +33,20 @@ public class SubjectActivity extends ListActivity {
 		setTitle(R.string.app_name);
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
-		//mSubjectId=getIntent().getExtras().getLong(SLDbAdapter.KEY_SUBJECTID);
+		
+		mSubjectId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_SUBJECTID);
+		if(mSubjectId == null){
+			Bundle extras = getIntent().getExtras();
+			mSubjectId = extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID) : null;
+		}
+		
 	    fillData();
 	    registerForContextMenu(getListView());
 	}
 	
 	@SuppressWarnings("deprecation")
 	private void fillData() {
-		Cursor tasksCursor = mDbHelper.fetchAllTasks();
+		Cursor tasksCursor = mDbHelper.fetchAllTasksOfSubject(mSubjectId);
         startManagingCursor(tasksCursor);
         // Create an array to specify the fields we want to display in the list (only TITLE)
         String[] from = new String[]{SLDbAdapter.KEY_TITLE};

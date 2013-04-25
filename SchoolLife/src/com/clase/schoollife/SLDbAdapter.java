@@ -218,7 +218,7 @@ public class SLDbAdapter {
      * @throws SQLException if note could not be found/retrieved
      */
     public Cursor fetchSubject(long subjectId) throws SQLException {
-        Cursor mCursor = mDb.query(true, DATABASE_TABLE_SUBJECT, new String[] {KEY_SUBJECTID, KEY_NAME, KEY_ABBREVIATION, KEY_PROFESSOR, KEY_CLASSROOM}, KEY_SUBJECTID + "=" + subjectId, null, null, null, null, null);
+        Cursor mCursor = mDb.query(true, DATABASE_TABLE_SUBJECT, new String[] {KEY_SUBJECTID+" _id", KEY_NAME, KEY_ABBREVIATION, KEY_PROFESSOR, KEY_CLASSROOM}, KEY_SUBJECTID + "=" + subjectId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
@@ -233,7 +233,22 @@ public class SLDbAdapter {
      * @throws SQLException if note could not be found/retrieved
      */
     public Cursor fetchTask(long taskId) throws SQLException {
-        Cursor mCursor = mDb.query(true, DATABASE_TABLE_TASK, new String[] {KEY_TASKID, KEY_TYPE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, KEY_TASKID + "=" + taskId, null, null, null, null, null);
+        Cursor mCursor = mDb.query(true, DATABASE_TABLE_TASK, new String[] {KEY_TASKID+" _id", KEY_TYPE, KEY_TITLE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, KEY_TASKID + "=" + taskId, null, null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+    }
+    
+    /**
+     * Return a Cursor over the list of all tasks of a subject
+     * 
+     * @param subjectId id of subject
+     * @return Cursor positioned to matching tasks, if found
+     * @throws SQLException if note could not be found/retrieved
+     */
+    public Cursor fetchAllTasksOfSubject(long subjectId) throws SQLException {
+        Cursor mCursor = mDb.query(true, DATABASE_TABLE_TASK, new String[] {KEY_TASKID+ " _id", KEY_TYPE, KEY_TITLE, KEY_EXPLANATION, KEY_DATE, KEY_MARK, KEY_REVISION, KEY_REVISIONDATE, KEY_COMPLETED, KEY_FEELINGSSTARS, KEY_FEELINGS, KEY_TASKSUBJECT}, KEY_TASKSUBJECT + "=" + subjectId, null, null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
         }
