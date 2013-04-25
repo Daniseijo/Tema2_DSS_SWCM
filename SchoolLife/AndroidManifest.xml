@@ -18,7 +18,7 @@
          NUEVA ACTIVIDAD      
         @string/title_inicio    es una referencia que tiene que ser declarada en values/string.xml  
         PantallaDeInicio es el nombre de la Clase que va a manejar la actividad de la pantalla de inicio   
-        La accion pasa a MAIN
+        La accion pasa a MAIN
         -->
         <activity
             android:name="com.clase.schoollife.SplashActivity"
@@ -33,7 +33,7 @@
         <!--
         La actividad principal pasa a la categoria DEFAULT  
         El name lo colocamos haciendo referencia al paquete que pertenece 
-        La accion pasa a una accion definida por nosotros !=  MAIN            
+        La accion pasa a una accion definida por nosotros !=  MAIN            
         -->
         <activity
             android:name="com.clase.schoollife.MainActivity"
@@ -49,6 +49,10 @@
         <activity
             android:name="com.clase.schoollife.SubjectActivity"
             android:label="@string/title_activity_subject" >
+        </activity>
+        <activity
+            android:name="com.clase.schoollife.TaskActivity"
+            android:label="@string/title_activity_task" >
         </activity>
     </application>
 

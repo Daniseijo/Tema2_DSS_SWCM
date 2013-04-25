@@ -1,20 +1,30 @@
 package com.clase.schoollife;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class SubjectActivity extends ListActivity {
 	
 	private SLDbAdapter mDbHelper;
+	private long mSubjectId;
+	
+	private static final int ACTIVITY_EDIT=0;
+	private static final int ACTIVITY_TASK=1;
+	
 	private static final int INSERT_ID = Menu.FIRST;
-	private static final int EDIT_ID = Menu.FIRST + 1;
+	private static final int EDIT_ID = Menu.FIRST +1;
 	private static final int DELETE_ID = Menu.FIRST + 2;
+	private static final int EDIT_TASK_ID= Menu.FIRST + 3;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +32,8 @@ public class SubjectActivity extends ListActivity {
 		setContentView(R.layout.activity_subject);
 		setTitle(R.string.app_name);
 		mDbHelper = new SLDbAdapter(this);
-	    mDbHelper.open();
+		mDbHelper.open();
+		//mSubjectId=getIntent().getExtras().getLong(SLDbAdapter.KEY_SUBJECTID);
 	    fillData();
 	    registerForContextMenu(getListView());
 	}
@@ -48,11 +59,62 @@ public class SubjectActivity extends ListActivity {
 	}
 	
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+		Intent i;
+	    switch (item.getItemId()) {
+	        case R.id.menu_add:
+	        	i = new Intent(this, CreateTask.class);
+	            startActivityForResult(i, ACTIVITY_TASK);
+	            return true;
+	        case R.id.menu_edit:
+	        	//it doesn't work
+	        	i = new Intent(this, CreateSubject.class);
+	        	i.putExtra(SLDbAdapter.KEY_SUBJECTID, mSubjectId);
+	            startActivityForResult(i, ACTIVITY_EDIT);
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	@Override
     public void onCreateContextMenu(ContextMenu menu, View v,
             ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-        menu.add(0, EDIT_ID, 0, R.string.edit);
+        menu.add(0, EDIT_TASK_ID, 0, R.string.edit);
         menu.add(0, DELETE_ID, 0, R.string.delete);
     }
+	
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+    	AdapterContextMenuInfo info;
+        switch(item.getItemId()) {
+        case EDIT_TASK_ID:
+        	info = (AdapterContextMenuInfo) item.getMenuInfo();
+        	Intent i = new Intent(this, CreateTask.class);
+            i.putExtra(SLDbAdapter.KEY_TASKID, info.id);
+            startActivityForResult(i, ACTIVITY_EDIT);
+        	return true;
+        case DELETE_ID:
+        	info = (AdapterContextMenuInfo) item.getMenuInfo();
+        	mDbHelper.deleteTask(info.id);
+        	fillData();
+        	return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+    
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent i = new Intent(this, TaskActivity.class);
+        i.putExtra(SLDbAdapter.KEY_TASKID, id);
+        startActivityForResult(i, ACTIVITY_TASK);
+    }
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        fillData();
+    }
 }

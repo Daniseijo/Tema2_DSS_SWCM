@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.AdapterView.AdapterContextMenuInfo;
@@ -26,7 +27,6 @@ public class MainActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		mDbHelper = new SLDbAdapter(this);
         mDbHelper.open();
         fillData();
@@ -56,19 +56,16 @@ public class MainActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle item selection
+		Intent i;
 	    switch (item.getItemId()) {
 	        case R.id.menu_add:
-	            newSubject();
+	        	i = new Intent(this, CreateSubject.class);
+	            startActivityForResult(i, ACTIVITY_EDIT);
 	            return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-	
-	private void newSubject() {
-        Intent i = new Intent(this, CreateSubject.class);
-        startActivityForResult(i, ACTIVITY_EDIT);
-    }
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent intent) {

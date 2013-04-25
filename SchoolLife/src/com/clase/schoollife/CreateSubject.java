@@ -32,7 +32,7 @@ public class CreateSubject extends Activity {
 		mClassroomText= (EditText) findViewById(R.id.edit_classroom);
 		
 		Button confirmButton=(Button) findViewById(R.id.button1);
-		
+
 		mSubjectId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_SUBJECTID);
 		if(mSubjectId == null){
 			Bundle extras = getIntent().getExtras();
