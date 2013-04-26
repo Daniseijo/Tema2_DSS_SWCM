@@ -20,11 +20,15 @@ public class SubjectActivity extends ListActivity {
 	
 	private static final int ACTIVITY_EDIT=0;
 	private static final int ACTIVITY_TASK=1;
+	private static final int ACTIVITY_OPTIONS=2;
+	private static final int ACTIVITY_HELP=3;
 	
 	private static final int INSERT_ID = Menu.FIRST;
 	private static final int EDIT_ID = Menu.FIRST +1;
 	private static final int DELETE_ID = Menu.FIRST + 2;
 	private static final int EDIT_TASK_ID= Menu.FIRST + 3;
+	
+	private static final String TASKS="tasks";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +78,20 @@ public class SubjectActivity extends ListActivity {
 	        	i = new Intent(this, CreateTask.class);
 	            startActivityForResult(i, ACTIVITY_TASK);
 	            return true;
+	        case R.id.menu_settings:
+	        	i= new Intent(this, OptionsActivity.class);
+	        	i.putExtra(OptionsActivity.FROM, TASKS);
+	        	startActivityForResult(i, ACTIVITY_OPTIONS);
+	        	return true;
 	        case R.id.menu_edit:
 	        	i = new Intent(this, CreateSubject.class);
 	        	i.putExtra(SLDbAdapter.KEY_SUBJECTID, mSubjectId);
 	            startActivityForResult(i, ACTIVITY_EDIT);
 	            return true;
+	        case R.id.menu_help:
+	        	i= new Intent(this, HelpActivity.class);
+	        	startActivityForResult(i,ACTIVITY_HELP);
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

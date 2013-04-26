@@ -16,10 +16,14 @@ import android.widget.SimpleCursorAdapter;
 public class MainActivity extends ListActivity {
 	private static final int ACTIVITY_EDIT=0;
 	private static final int ACTIVITY_SUBJECT=1;
+	private static final int ACTIVITY_OPTIONS=2;
+	private static final int ACTIVITY_HELP=3;
 	
-	 private static final int INSERT_ID = Menu.FIRST;
-	 private static final int EDIT_ID = Menu.FIRST + 1;
-	 private static final int DELETE_ID = Menu.FIRST + 2;
+	private static final int INSERT_ID = Menu.FIRST;
+	private static final int EDIT_ID = Menu.FIRST + 1;
+	private static final int DELETE_ID = Menu.FIRST + 2;
+	 
+	private static final String SUBJECTS="subjects";
 	
 	private SLDbAdapter mDbHelper;
 	
@@ -62,6 +66,16 @@ public class MainActivity extends ListActivity {
 	        	i = new Intent(this, CreateSubject.class);
 	            startActivityForResult(i, ACTIVITY_EDIT);
 	            return true;
+	        case R.id.menu_settings:
+	        	i=new Intent(this, OptionsActivity.class);
+	        	//maybe
+	        	i.putExtra(OptionsActivity.FROM,SUBJECTS);
+	        	startActivityForResult(i,ACTIVITY_OPTIONS);
+	        	return true;
+	        case R.id.menu_help:
+	        	i= new Intent(this, HelpActivity.class);
+	        	startActivityForResult(i,ACTIVITY_HELP);
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

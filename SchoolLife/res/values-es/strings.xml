@@ -25,4 +25,17 @@
     <string name="completed">Completado</string>
     <string name="feelings">Sensaciones</string>
     <string name="delete_all">Delete All</string>
+    
+    <string name="help_about_title">\nSobre SchoolLife:</string>
+    <string name="help_about">\tversión 1.0</string>
+    <string name="help_authors_title">\nAutores:</string>
+    <string name="help_authors">\tDaniel Sánchez Seijo\n\tJosé Santos Sánchez Sánchez</string>
+    <string name="help_contact_title">\nInformación de contacto:</string>
+    <string name="help_contact">\tdaniseijo12@alumnos.upm.es\n\tjs.sanchez@alumnos.upm.es</string>
+    <string name="help_usage_title">\nFuncionamiento de la App:</string>
+    <string name="help_usage">\tInfo de uso</string>
+    
+    <string name="delete_database">Borrar Base de Datos</string>
+    <string name="delete_tasks">Borrar todas las Tareas de esta Asignatura</string>
+    
 </resources>
