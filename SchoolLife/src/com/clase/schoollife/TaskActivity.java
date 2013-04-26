@@ -1,8 +1,10 @@
 package com.clase.schoollife;
 
 import android.os.Bundle;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,6 +20,16 @@ public class TaskActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_task);
+		ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    
+	    mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
+		if(mTaskId == null){
+			Bundle extras = getIntent().getExtras();
+			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
+			Cursor subject = mDbHelper.fetchTask(mTaskId);
+			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
+		}
 	}
 
 	@Override
@@ -41,6 +53,9 @@ public class TaskActivity extends Activity {
 	        	i= new Intent(this, HelpActivity.class);
 	        	startActivityForResult(i,ACTIVITY_HELP);
 	        	return true;
+	        case android.R.id.home:
+	        	finish(); 
+		        return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

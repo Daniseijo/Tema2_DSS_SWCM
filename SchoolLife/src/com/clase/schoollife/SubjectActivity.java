@@ -1,5 +1,6 @@
 package com.clase.schoollife;
 
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -34,6 +35,9 @@ public class SubjectActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subject);
+		ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+	    
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
 		
@@ -42,7 +46,7 @@ public class SubjectActivity extends ListActivity {
 			Bundle extras = getIntent().getExtras();
 			mSubjectId = extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID) : null;
 			Cursor subject = mDbHelper.fetchSubject(mSubjectId);
-			setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
+			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
 		}
 
 	    fillData();
@@ -92,6 +96,9 @@ public class SubjectActivity extends ListActivity {
 	        	i= new Intent(this, HelpActivity.class);
 	        	startActivityForResult(i,ACTIVITY_HELP);
 	        	return true;
+	        case android.R.id.home:
+	        	finish(); 
+		        return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }

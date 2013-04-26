@@ -1,9 +1,12 @@
 package com.clase.schoollife;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -33,7 +36,15 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
 		setContentView(R.layout.activity_create_task);
-		setTitle(R.string.new_task_title);
+		ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.new_task_title);
+		
+		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
+		if(mTaskId == null){
+			Bundle extras = getIntent().getExtras();
+			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
+		}
 		
 		//R.id. de prueba
 		mTitleText= (EditText) findViewById(R.id.edit_subject);
@@ -66,7 +77,18 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.task, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	        	finish(); 
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 }

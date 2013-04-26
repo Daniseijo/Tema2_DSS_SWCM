@@ -1,8 +1,10 @@
 package com.clase.schoollife;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.database.Cursor;
 import android.widget.Button;
@@ -24,7 +26,9 @@ public class CreateSubject extends Activity {
 		mDbHelper.open();
 		
 		setContentView(R.layout.activity_create);
-		setTitle(R.string.new_subject_title);
+		ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.new_subject_title);
 		
 		mNameText= (EditText) findViewById(R.id.edit_subject);
 		mAbbreviationText= (EditText) findViewById(R.id.edit_abbreviation);
@@ -98,4 +102,15 @@ public class CreateSubject extends Activity {
 	        }
         }
     }
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	        	finish(); 
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
 }

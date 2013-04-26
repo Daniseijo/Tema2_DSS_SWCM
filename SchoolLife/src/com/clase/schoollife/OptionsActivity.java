@@ -2,10 +2,13 @@ package com.clase.schoollife;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,7 +21,10 @@ public class OptionsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_options);
-		setTitle(R.string.settings);
+		ActionBar actionBar = getActionBar();
+	    actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.settings);
+		
 		Bundle extras = getIntent().getExtras();
 		String extra_from= extras.getString(FROM);
 		ListView list = (ListView) findViewById(R.id.options_list);
@@ -38,6 +44,17 @@ public class OptionsActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.options, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	        	finish(); 
+		        return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
 	}
 
 }
