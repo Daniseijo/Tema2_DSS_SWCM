@@ -41,6 +41,8 @@ public class CreateSubject extends Activity {
 		if(mSubjectId == null){
 			Bundle extras = getIntent().getExtras();
 			mSubjectId = extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID) : null;
+			Cursor subject = mDbHelper.fetchSubject(mSubjectId);
+			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
 		}
 		
 		populateFields();

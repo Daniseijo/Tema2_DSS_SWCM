@@ -27,8 +27,8 @@ public class TaskActivity extends Activity {
 		if(mTaskId == null){
 			Bundle extras = getIntent().getExtras();
 			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
-			Cursor subject = mDbHelper.fetchTask(mTaskId);
-			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
+			Cursor task = mDbHelper.fetchTask(mTaskId);
+			actionBar.setTitle(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
 		}
 	}
 
