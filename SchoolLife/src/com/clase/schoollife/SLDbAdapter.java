@@ -192,13 +192,9 @@ public class SLDbAdapter {
     }
     
     public boolean deleteAllSubjects(){
-    	boolean subject = true;
-    	Cursor subjects = fetchAllSubjects();
-    	Long[] subjectId= new Long[]{Long.valueOf(subjects.getColumnIndexOrThrow(KEY_SUBJECTID))};
-    	for(int i=0; i<subjectId.length;i++){
-    		subject= subject && deleteSubject(subjectId[i]);
-    	}
-    	return subject;
+    	mDb.execSQL("DELETE FROM "+DATABASE_TABLE_TASK +";");
+    	mDb.execSQL("DELETE FROM "+DATABASE_TABLE_SUBJECT +";");
+    	return true;
     }
     
     public boolean deleteAllTasksOfSubject(long subjectId){
