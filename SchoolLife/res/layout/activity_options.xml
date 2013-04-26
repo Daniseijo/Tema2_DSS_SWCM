@@ -10,7 +10,7 @@
     android:baselineAligned="false"
     tools:context=".OptionsActivity" >
     
-    <ListView android:id="@+id/options_list"
+    <ListView android:id="@+id/android:list"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         android:layout_weight="1" >

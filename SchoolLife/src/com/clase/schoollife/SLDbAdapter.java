@@ -177,8 +177,7 @@ public class SLDbAdapter {
      * @return true if deleted, false otherwise
      */
     public boolean deleteSubject(long subjectId) {
-    	boolean task = true;
-    	task= mDb.delete(DATABASE_TABLE_TASK,KEY_TASKSUBJECT + "="+ subjectId, null) > 0;
+    	boolean task= deleteAllTasksOfSubject(subjectId);
     	return (mDb.delete(DATABASE_TABLE_SUBJECT, KEY_SUBJECTID+"="+subjectId, null) >0) && task;
     }
     
@@ -190,6 +189,20 @@ public class SLDbAdapter {
      */
     public boolean deleteTask(long taskId) {
         return mDb.delete(DATABASE_TABLE_TASK, KEY_TASKID + "=" + taskId, null) > 0;
+    }
+    
+    public boolean deleteAllSubjects(){
+    	boolean subject = true;
+    	Cursor subjects = fetchAllSubjects();
+    	Long[] subjectId= new Long[]{Long.valueOf(subjects.getColumnIndexOrThrow(KEY_SUBJECTID))};
+    	for(int i=0; i<subjectId.length;i++){
+    		subject= subject && deleteSubject(subjectId[i]);
+    	}
+    	return subject;
+    }
+    
+    public boolean deleteAllTasksOfSubject(long subjectId){
+    	return mDb.delete(DATABASE_TABLE_TASK, KEY_TASKSUBJECT + "=" + subjectId,null)>0;
     }
     
     /**

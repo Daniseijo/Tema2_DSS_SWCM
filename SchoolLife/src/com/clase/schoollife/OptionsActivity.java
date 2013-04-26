@@ -3,19 +3,23 @@ package com.clase.schoollife;
 import java.util.ArrayList;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Intent;
+import android.app.ListActivity;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class OptionsActivity extends Activity {
+public class OptionsActivity extends ListActivity {
 	public static final String FROM="from";
 	private static final String SUBJECTS="subjects";
 	private static final String TASKS="tasks";
+	
+	private String extra_from;
+	private SLDbAdapter mDbHelper;
+	private Long mSubjectId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +28,19 @@ public class OptionsActivity extends Activity {
 		ActionBar actionBar = getActionBar();
 	    actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(R.string.settings);
+		mDbHelper = new SLDbAdapter(this);
+        mDbHelper.open();
 		
 		Bundle extras = getIntent().getExtras();
-		String extra_from= extras.getString(FROM);
-		ListView list = (ListView) findViewById(R.id.options_list);
+		extra_from= extras.getString(FROM);
+		ListView list = (ListView) findViewById(android.R.id.list);
 		ArrayList<String> myList = new ArrayList<String>();
 		
 		if(extra_from.equals(SUBJECTS)){
 			myList.add(getString(R.string.delete_database));
 		}else if(extra_from.equals(TASKS)){
 			myList.add(getString(R.string.delete_tasks));
+			mSubjectId=extras.getLong(SLDbAdapter.KEY_TASKSUBJECT);
 		}
 		ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.items_row, myList);
 		list.setAdapter(mAdapter);
@@ -56,5 +63,13 @@ public class OptionsActivity extends Activity {
 	            return super.onOptionsItemSelected(item);
 	    }
 	}
-
+	
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        if(extra_from.equals(SUBJECTS)){
+        	mDbHelper.deleteAllSubjects();
+        } else if(extra_from.equals(TASKS)){
+        	mDbHelper.deleteAllTasksOfSubject(mSubjectId);
+        }
+	}
 }

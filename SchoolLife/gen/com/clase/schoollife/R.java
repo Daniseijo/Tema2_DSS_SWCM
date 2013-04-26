@@ -29,23 +29,24 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f090010;
+        public static final int action_settings=0x7f090011;
         public static final int button1=0x7f090008;
-        public static final int editText1=0x7f090009;
-        public static final int editText2=0x7f09000a;
-        public static final int editText3=0x7f09000b;
-        public static final int editText4=0x7f09000c;
+        public static final int button2=0x7f09000f;
+        public static final int editText1=0x7f09000a;
+        public static final int editText2=0x7f09000b;
+        public static final int editText3=0x7f09000c;
+        public static final int editText4=0x7f09000d;
         public static final int edit_abbreviation=0x7f090005;
         public static final int edit_classroom=0x7f090007;
         public static final int edit_professor=0x7f090006;
         public static final int edit_subject=0x7f090002;
-        public static final int menu_add=0x7f090011;
-        public static final int menu_edit=0x7f090014;
-        public static final int menu_help=0x7f090013;
-        public static final int menu_settings=0x7f090012;
-        public static final int name_entry=0x7f09000f;
-        public static final int options_list=0x7f09000e;
-        public static final int task_type=0x7f09000d;
+        public static final int menu_add=0x7f090012;
+        public static final int menu_edit=0x7f090015;
+        public static final int menu_help=0x7f090014;
+        public static final int menu_settings=0x7f090013;
+        public static final int name_entry=0x7f090010;
+        public static final int scrollView1=0x7f090009;
+        public static final int task_type=0x7f09000e;
         public static final int textView1=0x7f090000;
         public static final int textView2=0x7f090001;
         public static final int textView3=0x7f090003;
@@ -74,6 +75,7 @@ public final class R {
         public static final int action_settings=0x7f050025;
         public static final int add=0x7f050002;
         public static final int app_name=0x7f050000;
+        public static final int change_date=0x7f050029;
         public static final int classroom=0x7f050007;
         public static final int completed=0x7f050016;
         public static final int confirm_button=0x7f05000c;
