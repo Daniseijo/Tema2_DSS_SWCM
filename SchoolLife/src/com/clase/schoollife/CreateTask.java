@@ -44,8 +44,6 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		if(mTaskId == null){
 			Bundle extras = getIntent().getExtras();
 			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
-			Cursor task = mDbHelper.fetchTask(mTaskId);
-			actionBar.setTitle(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
 		}
 		
 		//R.id. de prueba
