@@ -40,7 +40,7 @@ public class OptionsActivity extends ListActivity {
 			myList.add(getString(R.string.delete_database));
 		}else if(extra_from.equals(TASKS)){
 			myList.add(getString(R.string.delete_tasks));
-			mSubjectId=extras.getLong(SLDbAdapter.KEY_TASKSUBJECT);
+			mSubjectId=extras.getLong(SLDbAdapter.KEY_SUBJECTID);
 		}
 		ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.items_row, myList);
 		list.setAdapter(mAdapter);

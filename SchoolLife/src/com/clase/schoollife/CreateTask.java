@@ -2,7 +2,6 @@ package com.clase.schoollife;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,22 +10,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class CreateTask extends Activity implements OnItemSelectedListener {
+	
 	
 	private Long mTaskId;
 	private int mTypeInt;
 	private EditText mTitleText;
     private EditText mExplanationText;
-    private EditText mDateText;
-    private double mMarkInt;
-    private boolean mRevision;
-    private EditText mRevisionDateText;
-    private boolean mCompleted;
-    private int mFeelingsStarsInt;
-    private EditText mFeelingsText;
+    private TextView mDateText;
+    private Long mSubjectId;
     
     private SLDbAdapter mDbHelper;
     
@@ -46,12 +43,6 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
 		}
 		
-		//R.id. de prueba
-		mTitleText= (EditText) findViewById(R.id.edit_subject);
-		mExplanationText= (EditText) findViewById(R.id.edit_abbreviation);
-		mDateText= (EditText) findViewById(R.id.edit_professor);
-		mRevisionDateText= (EditText) findViewById(R.id.edit_classroom);
-		mFeelingsText= (EditText) findViewById(R.id.edit_abbreviation);
 		Spinner spinner = (Spinner) findViewById(R.id.task_type);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -61,7 +52,39 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		// Apply the adapter to the spinner
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(this);
+		
+		mTitleText= (EditText) findViewById(R.id.edit_title);
+		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
+		mDateText= (TextView) findViewById(R.id.view_date);
+		
+		Button confirmButton=(Button) findViewById(R.id.button1);
+		confirmButton.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				saveState();
+				finish();
+			}
+		});
 	}
+	
+	private void saveState() {
+        int type = mTypeInt;
+        String title = mTitleText.getText().toString();
+        String explanation= mExplanationText.getText().toString();
+        String date= mDateText.getText().toString();
+        Long taskSubject= mSubjectId;
+        if(title!=null){
+	        if (mTaskId == null) {
+	            long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
+	            if (id > 0) {
+	                mTaskId = id;
+	            }
+	        } else {
+	            mDbHelper.updateTask(mTaskId, type, title, explanation, date, -1, false, null, false, -1, null, taskSubject);
+	        }
+        }
+    }
 	
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {

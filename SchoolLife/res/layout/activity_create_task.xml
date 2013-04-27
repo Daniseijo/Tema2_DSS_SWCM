@@ -30,7 +30,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignLeft="@+id/view_date"
         android:layout_below="@+id/edit_mark"
         android:layout_marginTop="10dp"
         android:text="@string/explanation" />
@@ -45,7 +45,7 @@
         android:inputType="textCapWords" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/view_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -58,8 +58,8 @@
         android:id="@+id/editText4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/view_date"
+        android:layout_below="@+id/view_date"
         android:ems="10"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:hint="@string/date"
@@ -114,8 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText4"
         android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/textView4"
-        android:text="@string/change_date" />   
+        android:layout_alignTop="@+id/view_date"
+        android:text="@string/change_date" />
 
 </RelativeLayout>
  </ScrollView>
