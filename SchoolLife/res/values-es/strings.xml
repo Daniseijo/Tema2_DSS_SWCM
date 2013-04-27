@@ -16,6 +16,7 @@
     <string name="delete">Borrar</string>
     <string name="new_task_title">Nueva Tarea</string>
     <string name="task">Tarea</string>
+    <string name="tasks">Tareas</string>
     <string name="title">Título</string>
     <string name="explanation">Explicación</string>
     <string name="date">Fecha</string>

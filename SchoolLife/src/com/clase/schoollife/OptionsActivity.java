@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import android.app.ActionBar;
 import android.app.ListActivity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;

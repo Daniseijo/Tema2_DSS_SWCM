@@ -10,22 +10,28 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.TextView;
 
 public class SubjectActivity extends ListActivity {
 	
 	private SLDbAdapter mDbHelper;
 	private Long mSubjectId;
 	
+	private TextView mNameText;
+    private TextView mProfessorText;
+    private TextView mClassroomText;
+	
 	private static final int ACTIVITY_EDIT=0;
 	private static final int ACTIVITY_TASK=1;
 	private static final int ACTIVITY_OPTIONS=2;
 	private static final int ACTIVITY_HELP=3;
 	
-	private static final int INSERT_ID = Menu.FIRST;
-	private static final int EDIT_ID = Menu.FIRST +1;
+	//private static final int INSERT_ID = Menu.FIRST;
+	//private static final int EDIT_ID = Menu.FIRST +1;
 	private static final int DELETE_ID = Menu.FIRST + 2;
 	private static final int EDIT_TASK_ID= Menu.FIRST + 3;
 	
@@ -41,6 +47,10 @@ public class SubjectActivity extends ListActivity {
 		mDbHelper = new SLDbAdapter(this);
 		mDbHelper.open();
 		
+		mNameText= (TextView) findViewById(R.id.view_subject);
+		mProfessorText= (TextView) findViewById(R.id.view_professor);
+		mClassroomText= (TextView) findViewById(R.id.view_classroom);
+		
 		mSubjectId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_SUBJECTID);
 		if(mSubjectId == null){
 			Bundle extras = getIntent().getExtras();
@@ -48,10 +58,21 @@ public class SubjectActivity extends ListActivity {
 			Cursor subject = mDbHelper.fetchSubject(mSubjectId);
 			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
 		}
-
+		populateFields();
 	    fillData();
 	    registerForContextMenu(getListView());
 	}
+	
+	@SuppressWarnings("deprecation")
+	private void populateFields() {
+        if (mSubjectId != null) {
+            Cursor subject = mDbHelper.fetchSubject(mSubjectId);
+            startManagingCursor(subject);
+            mNameText.setText(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_NAME)));
+            mProfessorText.setText(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_PROFESSOR)));
+            mClassroomText.setText(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_CLASSROOM)));
+        }
+    }
 	
 	@SuppressWarnings("deprecation")
 	private void fillData() {

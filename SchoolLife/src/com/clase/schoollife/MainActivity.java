@@ -19,7 +19,7 @@ public class MainActivity extends ListActivity {
 	private static final int ACTIVITY_OPTIONS=2;
 	private static final int ACTIVITY_HELP=3;
 	
-	private static final int INSERT_ID = Menu.FIRST;
+	//private static final int INSERT_ID = Menu.FIRST;
 	private static final int EDIT_ID = Menu.FIRST + 1;
 	private static final int DELETE_ID = Menu.FIRST + 2;
 	 
