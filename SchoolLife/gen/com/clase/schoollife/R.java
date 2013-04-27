@@ -72,22 +72,23 @@ public final class R {
     }
     public static final class string {
         public static final int abbreviation=0x7f05000a;
-        public static final int action_settings=0x7f050025;
+        public static final int action_settings=0x7f050027;
         public static final int add=0x7f050002;
         public static final int app_name=0x7f050000;
-        public static final int change_date=0x7f050029;
+        public static final int change_date=0x7f05002b;
         public static final int classroom=0x7f050007;
         public static final int completed=0x7f050016;
         public static final int confirm_button=0x7f05000c;
+        public static final int database_deleted=0x7f050023;
         public static final int date=0x7f050012;
         public static final int delete=0x7f05000d;
         public static final int delete_all=0x7f050019;
         public static final int delete_database=0x7f050022;
-        public static final int delete_tasks=0x7f050023;
+        public static final int delete_tasks=0x7f050024;
         public static final int edit=0x7f050005;
         public static final int explanation=0x7f050011;
         public static final int feelings=0x7f050017;
-        public static final int hello_world=0x7f050026;
+        public static final int hello_world=0x7f050028;
         public static final int help=0x7f050006;
         public static final int help_about=0x7f05001b;
         public static final int help_about_title=0x7f05001a;
@@ -108,11 +109,12 @@ public final class R {
         public static final int settings=0x7f050001;
         public static final int subject=0x7f050008;
         public static final int task=0x7f05000f;
+        public static final int tasks_deleted=0x7f050025;
         public static final int title=0x7f050010;
-        public static final int title_activity_help=0x7f050028;
-        public static final int title_activity_options=0x7f050027;
+        public static final int title_activity_help=0x7f05002a;
+        public static final int title_activity_options=0x7f050029;
         public static final int title_activity_subject=0x7f050018;
-        public static final int title_activity_task=0x7f050024;
+        public static final int title_activity_task=0x7f050026;
     }
     public static final class style {
         /** 

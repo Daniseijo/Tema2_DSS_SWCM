@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class OptionsActivity extends ListActivity {
 	public static final String FROM="from";
@@ -66,10 +67,16 @@ public class OptionsActivity extends ListActivity {
 	
 	protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+        Toast toast;
         if(extra_from.equals(SUBJECTS)){
         	mDbHelper.deleteAllSubjects();
+        	toast = Toast.makeText(getApplicationContext(), R.string.database_deleted, Toast.LENGTH_SHORT);
+        	toast.show();
         } else if(extra_from.equals(TASKS)){
         	mDbHelper.deleteAllTasksOfSubject(mSubjectId);
+        	toast = Toast.makeText(getApplicationContext(), R.string.tasks_deleted, Toast.LENGTH_SHORT);
+        	toast.show();
         }
+        finish();
 	}
 }

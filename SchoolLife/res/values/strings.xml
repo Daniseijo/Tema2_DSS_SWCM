@@ -38,7 +38,9 @@
     <string name="help_usage">\tInfo de uso</string>
     
     <string name="delete_database">Delete Database</string>
+    <string name="database_deleted">Database deleted</string>
     <string name="delete_tasks">Delete all the Tasks of this Subject</string>
+    <string name="tasks_deleted">Tasks of this Subject deleted</string>
 
     <string-array name="tasks_array">
         <item>Exam</item>

@@ -37,5 +37,7 @@
     
     <string name="delete_database">Borrar Base de Datos</string>
     <string name="delete_tasks">Borrar todas las Tareas de esta Asignatura</string>
+    <string name="database_deleted">Base de Datos borrada</string>
+    <string name="tasks_deleted">Tareas de esta Asignatura borradas</string>
     
 </resources>
