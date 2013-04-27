@@ -37,12 +37,6 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	    actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(R.string.new_task_title);
 		
-		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
-		if(mTaskId == null){
-			Bundle extras = getIntent().getExtras();
-			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
-		}
-		
 		Spinner spinner = (Spinner) findViewById(R.id.task_type);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -57,6 +51,12 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
 		mDateText= (TextView) findViewById(R.id.view_date);
 		
+		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
+		if(mTaskId == null){
+			Bundle extras = getIntent().getExtras();
+			mSubjectId= extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID): null;
+		}
+		
 		Button confirmButton=(Button) findViewById(R.id.button1);
 		confirmButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -69,10 +69,12 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	}
 	
 	private void saveState() {
-        int type = mTypeInt;
+        //int type = mTypeInt;
+		int type=1;
         String title = mTitleText.getText().toString();
         String explanation= mExplanationText.getText().toString();
-        String date= mDateText.getText().toString();
+        //String date= mDateText.getText().toString();
+        String date ="2013-04-27";
         Long taskSubject= mSubjectId;
         if(title!=null){
 	        if (mTaskId == null) {
@@ -84,6 +86,13 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	            mDbHelper.updateTask(mTaskId, type, title, explanation, date, -1, false, null, false, -1, null, taskSubject);
 	        }
         }
+    }
+	
+	@Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        saveState();
+        outState.putSerializable(SLDbAdapter.KEY_TASKID, mTaskId);
     }
 	
 	@Override

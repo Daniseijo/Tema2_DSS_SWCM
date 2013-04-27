@@ -159,13 +159,17 @@ public class SLDbAdapter {
         initialValues.put(KEY_TITLE, title);
         initialValues.put(KEY_EXPLANATION, explanation);
         initialValues.put(KEY_DATE, date);
-        if(mark!=-1){
+        if(mark==-1){
+        	initialValues.putNull(KEY_MARK);
+    	} else{
     		initialValues.put(KEY_MARK, mark);
     	}
         initialValues.put(KEY_REVISION, revision);
         initialValues.put(KEY_REVISIONDATE, revisionDate);
         initialValues.put(KEY_COMPLETED, completed);
-        if(feelingsStars!=-1){
+        if(feelingsStars==-1){
+        	initialValues.putNull(KEY_FEELINGSSTARS);
+        } else{
         	initialValues.put(KEY_FEELINGSSTARS, feelingsStars);
         }
         initialValues.put(KEY_FEELINGS, feelings);
@@ -322,13 +326,17 @@ public class SLDbAdapter {
         args.put(KEY_TITLE, title);
         args.put(KEY_EXPLANATION, explanation);
         args.put(KEY_DATE, date);
-        if(mark!=-1){
+        if(mark==-1){
+        	args.putNull(KEY_MARK);
+    	} else{
     		args.put(KEY_MARK, mark);
     	}
         args.put(KEY_REVISION, revision);
         args.put(KEY_REVISIONDATE, revisionDate);
         args.put(KEY_COMPLETED, completed);
-        if(feelingsStars!=-1){
+        if(feelingsStars==-1){
+        	args.putNull(KEY_FEELINGSSTARS);
+        } else{
         	args.put(KEY_FEELINGSSTARS, feelingsStars);
         }
         args.put(KEY_FEELINGS, feelings);

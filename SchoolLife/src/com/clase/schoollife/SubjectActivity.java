@@ -58,7 +58,7 @@ public class SubjectActivity extends ListActivity {
 			actionBar.setTitle(subject.getString(subject.getColumnIndexOrThrow(SLDbAdapter.KEY_ABBREVIATION)));
 		}
 		populateFields();
-	    fillData();
+		fillData();
 	    registerForContextMenu(getListView());
 	}
 	
@@ -100,6 +100,7 @@ public class SubjectActivity extends ListActivity {
 	    switch (item.getItemId()) {
 	        case R.id.menu_add:
 	        	i = new Intent(this, CreateTask.class);
+	        	i.putExtra(SLDbAdapter.KEY_SUBJECTID, mSubjectId);
 	            startActivityForResult(i, ACTIVITY_TASK);
 	            return true;
 	        case R.id.menu_settings:
