@@ -1,7 +1,11 @@
 package com.clase.schoollife;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class CreateTask extends Activity implements OnItemSelectedListener {
-	
 	
 	private Long mTaskId;
 	private int mTypeInt;
@@ -47,9 +50,19 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		spinner.setAdapter(adapter);
 		spinner.setOnItemSelectedListener(this);
 		
+		Button changeDate = (Button) findViewById(R.id.button2);
+		changeDate.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showDatePickerDialog(v);
+			}
+		});
+		
 		mTitleText= (EditText) findViewById(R.id.edit_title);
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
-		mDateText= (TextView) findViewById(R.id.view_date);
+		mDateText= (TextView) findViewById(R.id.edit_date);
+		mTypeInt=0;
+		mDateText.setText(DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
 		
 		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
 		if(mTaskId == null){
@@ -68,13 +81,17 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		});
 	}
 	
+	private void showDatePickerDialog(View v){
+		DialogFragment newFragment= new DatePickerFragment();
+		newFragment.show(getFragmentManager(), "datePicker");
+	}
+	
 	private void saveState() {
-        //int type = mTypeInt;
-		int type=1;
+		int type=mTypeInt;
         String title = mTitleText.getText().toString();
         String explanation= mExplanationText.getText().toString();
-        //String date= mDateText.getText().toString();
-        String date ="2013-04-27";
+        String date= mDateText.getText().toString();
+        Log.w("date",date);
         Long taskSubject= mSubjectId;
         if(title!=null){
 	        if (mTaskId == null) {
@@ -97,8 +114,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // Dependiendo de lo seleccionado se activan unos u otros.
-		Log.i("Posición ID", ""+ pos);
+        mTypeInt=pos;
     }
 
 	@Override

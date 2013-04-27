@@ -28,7 +28,7 @@ public class DatePickerFragment extends DialogFragment
 	
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
-		TextView fecha = (TextView) getActivity().findViewById(R.id.textDate);
+		TextView fecha = (TextView) getActivity().findViewById(R.id.edit_date);
 		Calendar myDate = new GregorianCalendar(year, month, day);
 		fecha.setText(DateFormat.getDateInstance().format(myDate.getTime()));
 	}
