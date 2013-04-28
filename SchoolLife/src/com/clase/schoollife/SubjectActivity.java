@@ -157,6 +157,7 @@ public class SubjectActivity extends ListActivity {
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(this, TaskActivity.class);
         i.putExtra(SLDbAdapter.KEY_TASKID, id);
+        i.putExtra(SLDbAdapter.KEY_TASKSUBJECT, mSubjectId);
         startActivityForResult(i, ACTIVITY_TASK);
     }
 

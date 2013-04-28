@@ -54,5 +54,8 @@
     <string name="title_activity_options">OptionsActivity</string>
     <string name="title_activity_help">HelpActivity</string>
     <string name="change_date">Change Date</string>
+    <string name="exam">Exam</string>
+    <string name="exercise">Exercise</string>
+    <string name="type">Type</string>
 
 </resources>

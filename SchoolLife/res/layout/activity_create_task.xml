@@ -14,7 +14,7 @@
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:scrollbars="vertical|horizontal"
-    tools:context=".CreateSubject" >
+    tools:context=".CreateTask" >
 
     <EditText
         android:id="@+id/edit_title"

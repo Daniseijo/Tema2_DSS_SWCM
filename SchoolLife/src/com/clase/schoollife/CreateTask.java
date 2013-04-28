@@ -7,7 +7,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,17 +90,12 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         String title = mTitleText.getText().toString();
         String explanation= mExplanationText.getText().toString();
         String date= mDateText.getText().toString();
-        Log.w("date",date);
         Long taskSubject= mSubjectId;
         if(title!=null){
-	        if (mTaskId == null) {
-	            long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
-	            if (id > 0) {
-	                mTaskId = id;
-	            }
-	        } else {
-	            mDbHelper.updateTask(mTaskId, type, title, explanation, date, -1, false, null, false, -1, null, taskSubject);
-	        }
+        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
+        	if (id > 0) {
+        		mTaskId = id;
+        	}
         }
     }
 	
