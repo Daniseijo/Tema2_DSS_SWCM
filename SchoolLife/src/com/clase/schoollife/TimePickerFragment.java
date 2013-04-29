@@ -31,9 +31,9 @@ public  class TimePickerFragment extends DialogFragment implements TimePickerDia
 			ct.setDateText(myCalendar);
 			ct.setTimeMili(myCalendar.getTime().getTime());
 		} else if (getActivity().getClass().equals(TaskActivity.class)) {
-			TaskActivity ct= (TaskActivity) getActivity();
-			ct.setDateText(myCalendar);
-			ct.setTimeMili(myCalendar.getTime().getTime());
+			TaskActivity ta= (TaskActivity) getActivity();
+			ta.setDateText(myCalendar);
+			ta.setTimeMili(myCalendar.getTime().getTime());
 		}
 	}
 }
