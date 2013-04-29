@@ -57,5 +57,9 @@
     <string name="exercise">Exercise</string>
     <string name="type"><b>Type</b></string>
     <string name="edit_task">Edit Task</string>
+    
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

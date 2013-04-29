@@ -86,6 +86,7 @@ public final class R {
         public static final int abbreviation=0x7f05000a;
         public static final int add=0x7f050002;
         public static final int app_name=0x7f050000;
+        public static final int are_you_sure=0x7f050030;
         public static final int change_date=0x7f05002b;
         public static final int classroom=0x7f050007;
         public static final int completed=0x7f050018;
@@ -115,6 +116,7 @@ public final class R {
         public static final int mark=0x7f050015;
         public static final int new_subject_title=0x7f05000b;
         public static final int new_task_title=0x7f05000e;
+        public static final int no=0x7f050032;
         public static final int no_subject=0x7f050003;
         public static final int no_task=0x7f050004;
         public static final int professor=0x7f050009;
@@ -131,6 +133,7 @@ public final class R {
         public static final int title_activity_subject=0x7f05001a;
         public static final int title_activity_task=0x7f050028;
         public static final int type=0x7f05002e;
+        public static final int yes=0x7f050031;
     }
     public static final class style {
         /** 

@@ -3,7 +3,9 @@ package com.clase.schoollife;
 import java.util.ArrayList;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -44,6 +46,7 @@ public class OptionsActivity extends ListActivity {
 		}
 		ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.items_row, myList);
 		list.setAdapter(mAdapter);
+		
 	}
 
 	@Override
@@ -66,16 +69,33 @@ public class OptionsActivity extends ListActivity {
 	
 	protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Toast toast;
-        if(extra_from.equals(SUBJECTS)){
-        	mDbHelper.deleteAllSubjects();
-        	toast = Toast.makeText(getApplicationContext(), R.string.database_deleted, Toast.LENGTH_SHORT);
-        	toast.show();
-        } else if(extra_from.equals(TASKS)){
-        	mDbHelper.deleteAllTasksOfSubject(mSubjectId);
-        	toast = Toast.makeText(getApplicationContext(), R.string.tasks_deleted, Toast.LENGTH_SHORT);
-        	toast.show();
-        }
-        finish();
+        
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		    	Toast toast;
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		        	if(extra_from.equals(SUBJECTS)){
+		            	mDbHelper.deleteAllSubjects();
+		            	toast = Toast.makeText(getApplicationContext(), R.string.database_deleted, Toast.LENGTH_SHORT);
+		            	toast.show();
+		            } else if(extra_from.equals(TASKS)){
+		            	mDbHelper.deleteAllTasksOfSubject(mSubjectId);
+		            	toast = Toast.makeText(getApplicationContext(), R.string.tasks_deleted, Toast.LENGTH_SHORT);
+		            	toast.show();
+		            }
+		        	finish();
+		            break;
+
+		        case DialogInterface.BUTTON_NEGATIVE:
+		        	finish();
+		            break;
+		        }
+		    }
+		};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(R.string.are_you_sure).setNegativeButton(R.string.no, dialogClickListener).setPositiveButton(R.string.yes, dialogClickListener).show();
 	}
 }
