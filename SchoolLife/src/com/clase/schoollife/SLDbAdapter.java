@@ -144,7 +144,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return taskId or -1 if failed
      */
-    public long createTask(int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
+    public long createTask(int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
     	int revision=1;
         int completed=1;
     	if(!rev){
@@ -311,7 +311,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return true if the task was successfully updated, false otherwise
      */
-    public boolean updateTask(long taskId, int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, int feelingsStars, String feelings, long taskSubject) {
+    public boolean updateTask(long taskId, int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
         int revision=1;
         int completed=1;
     	if(!rev){
