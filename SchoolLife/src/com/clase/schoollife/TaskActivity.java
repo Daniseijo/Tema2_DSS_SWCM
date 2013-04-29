@@ -102,7 +102,10 @@ public class TaskActivity extends Activity {
             int revision= task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISION));
             if(revision==1){mRevisionCheck.setChecked(true);} else{mRevisionCheck.setChecked(false);}
     		mMarkText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK)));
-    		mRevisionDate.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE)));
+    		if(mRevisionCheck.isChecked()){
+    			mRevisionTime=task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE));
+    			mRevisionDate.setText(DateFormat.getDateTimeInstance().format(new Date(mRevisionTime)));
+    		}
     		mFeelingsText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGS)));
     		float stars = task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGSSTARS));
     		mFeelingsStarsBar.setRating(stars);
@@ -133,8 +136,13 @@ public class TaskActivity extends Activity {
         String explanation= mExplanationText.getText().toString();
         Long date= mTime;
         Long taskSubject= mSubjectId;
-        int mark = Integer.parseInt(mMarkText.getText().toString());
-        String revisionDate= mRevisionDate.getText().toString();
+        double mark;
+        if(mMarkText.getText().toString().equals("")){
+        	mark=-1;
+        } else{
+        	mark = Double.parseDouble(mMarkText.getText().toString());
+        }
+        long revisionDate= mRevisionTime;
         String feelings = mFeelingsText.getText().toString();
         boolean revision=mRevisionCheck.isChecked();
         boolean completed=mCompletedCheck.isChecked();

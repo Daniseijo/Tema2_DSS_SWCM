@@ -43,7 +43,7 @@ public class SLDbAdapter {
     
     //Tasks table creation statement
     private static final String DATABASE_CREATE_TASK =
-    		"CREATE TABLE task(taskid integer not null, type integer not null, title text not null, explanation text not null, date integer not null, mark real, revision integer not null, revisiondate date, completed integer not null, feelingsstars integer, feelings text, tasksubject integer not null, CONSTRAINT PK_task_taskid PRIMARY KEY(taskid),FOREIGN KEY(tasksubject) REFERENCES subject(subjectid));";
+    		"CREATE TABLE task(taskid integer not null, type integer not null, title text not null, explanation text not null, date integer not null, mark real, revision integer not null, revisiondate integer, completed integer not null, feelingsstars integer, feelings text, tasksubject integer not null, CONSTRAINT PK_task_taskid PRIMARY KEY(taskid),FOREIGN KEY(tasksubject) REFERENCES subject(subjectid));";
 
     private static final String DATABASE_NAME = "data";
     private static final String DATABASE_TABLE_SUBJECT = "subject";
@@ -144,7 +144,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return taskId or -1 if failed
      */
-    public long createTask(int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
+    public long createTask(int type, String title, String explanation, long date, double mark, boolean rev, long revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
     	int revision=1;
         int completed=1;
     	if(!rev){
@@ -165,7 +165,11 @@ public class SLDbAdapter {
     		initialValues.put(KEY_MARK, mark);
     	}
         initialValues.put(KEY_REVISION, revision);
-        initialValues.put(KEY_REVISIONDATE, revisionDate);
+        if(revisionDate==-1){
+        	initialValues.putNull(KEY_REVISIONDATE);
+        }else{
+        	initialValues.put(KEY_REVISIONDATE, revisionDate);
+        }
         initialValues.put(KEY_COMPLETED, completed);
         if(feelingsStars==-1){
         	initialValues.putNull(KEY_FEELINGSSTARS);
@@ -311,7 +315,7 @@ public class SLDbAdapter {
      * @param taskSubject	the subject related to the task
      * @return true if the task was successfully updated, false otherwise
      */
-    public boolean updateTask(long taskId, int type, String title, String explanation, long date, double mark, boolean rev, String revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
+    public boolean updateTask(long taskId, int type, String title, String explanation, long date, double mark, boolean rev, long revisionDate, boolean comp, float feelingsStars, String feelings, long taskSubject) {
         int revision=1;
         int completed=1;
     	if(!rev){
@@ -332,7 +336,11 @@ public class SLDbAdapter {
     		args.put(KEY_MARK, mark);
     	}
         args.put(KEY_REVISION, revision);
-        args.put(KEY_REVISIONDATE, revisionDate);
+        if(revisionDate==-1){
+        	args.putNull(KEY_REVISIONDATE);
+        }else{
+        	args.put(KEY_REVISIONDATE, revisionDate);
+        }
         args.put(KEY_COMPLETED, completed);
         if(feelingsStars==-1){
         	args.putNull(KEY_FEELINGSSTARS);

@@ -128,7 +128,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         Long taskSubject= mSubjectId;
         if(!mCreated){
 	        if(title!=null){
-	        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
+	        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, -1, false, -1,null, taskSubject);
 	        	if (id > 0) {
 	        		mTaskId = id;
 	        	}
@@ -139,7 +139,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
             double mark = task.getDouble(task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK));
             boolean rev = false;
             if(task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISION))==1) rev = true;
-            String revisionDate= task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE));
+            long revisionDate= task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE));
             boolean comp = false;
             if(task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_COMPLETED))==1) comp = true;
             int feelingsStars = task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGSSTARS);
