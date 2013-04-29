@@ -101,6 +101,7 @@ public class SubjectActivity extends ListActivity {
 	        case R.id.menu_add:
 	        	i = new Intent(this, CreateTask.class);
 	        	i.putExtra(SLDbAdapter.KEY_SUBJECTID, mSubjectId);
+	            i.putExtra("Created", false);
 	            startActivityForResult(i, ACTIVITY_TASK);
 	            return true;
 	        case R.id.menu_settings:
@@ -143,6 +144,7 @@ public class SubjectActivity extends ListActivity {
         	Intent i = new Intent(this, CreateTask.class);
             i.putExtra(SLDbAdapter.KEY_TASKID, info.id);
             i.putExtra(SLDbAdapter.KEY_TASKSUBJECT, mSubjectId);
+            i.putExtra("Created", true);
             startActivityForResult(i, ACTIVITY_EDIT);
         	return true;
         case DELETE_ID:

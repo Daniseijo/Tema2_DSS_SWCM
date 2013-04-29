@@ -29,7 +29,8 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
     private EditText mExplanationText;
     private TextView mDateText;
     private Long mSubjectId;
-    private boolean created;
+    private boolean mCreated;
+    private Spinner mSpinner;
     
     private SLDbAdapter mDbHelper;
     
@@ -43,15 +44,15 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	    actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setTitle(R.string.new_task_title);
 		
-		Spinner spinner = (Spinner) findViewById(R.id.task_type);
+		mSpinner = (Spinner) findViewById(R.id.task_type);
 		// Create an ArrayAdapter using the string array and a default spinner layout
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
 		        R.array.tasks_array, android.R.layout.simple_spinner_item);
 		// Specify the layout to use when the list of choices appears
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(this);
+		mSpinner.setAdapter(adapter);
+		mSpinner.setOnItemSelectedListener(this);
 		
 		Button changeDate = (Button) findViewById(R.id.button2);
 		changeDate.setOnClickListener(new View.OnClickListener() {
@@ -60,23 +61,18 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 				showDatePickerDialog(v);
 			}
 		});
-		created= true;
 		mTitleText= (EditText) findViewById(R.id.edit_title);
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
 		mDateText= (TextView) findViewById(R.id.edit_date);
-		mTypeInt=0;
 		mTime=Calendar.getInstance().getTime().getTime();
 		mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
+		mTypeInt = 0;
 		
 		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
 		if(mTaskId == null){
 			Bundle extras = getIntent().getExtras();
-			try{
-				Long tryLong= extras.getLong(SLDbAdapter.KEY_TASKSUBJECT);
-			} catch(Exception e){
-				created =false;
-			}
-			if(!created){
+			mCreated = extras.getBoolean("Created");
+			if(!mCreated){
 				mSubjectId= extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID): null;
 			} else{
 				mTaskId= extras.getLong(SLDbAdapter.KEY_TASKID);
@@ -99,15 +95,15 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	
 	@SuppressWarnings("deprecation")
 	private void populateFields() {
-        if (mSubjectId != null) {
-            Cursor task = mDbHelper.fetchTask(mTaskId);
-            startManagingCursor(task);
-            mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
-            mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
-            mDateText.setText(DateFormat.getDateInstance().format(new Date((task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE))))));
-            //poner dato en Spinner
-            mTypeInt=task.getColumnIndexOrThrow(SLDbAdapter.KEY_TYPE);
-        }
+		Cursor task = mDbHelper.fetchTask(mTaskId);
+        startManagingCursor(task);
+        mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
+        mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
+        mTime=task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE));
+        mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
+    	mTypeInt=task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TYPE));
+        mSpinner.setSelection(mTypeInt);
+        
     }
 	public void setTimeMili(long time){
 		mTime=time;
@@ -124,7 +120,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         String explanation= mExplanationText.getText().toString();
         long date = mTime;
         Long taskSubject= mSubjectId;
-        if(!created){
+        if(!mCreated){
 	        if(title!=null){
 	        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
 	        	if (id > 0) {
@@ -134,12 +130,12 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         } else{
         	Cursor task = mDbHelper.fetchTask(mTaskId);
             startManagingCursor(task);
-            double mark = task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK);
+            double mark = task.getDouble(task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK));
             boolean rev = false;
-            if(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISION)==1) rev = true;
+            if(task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISION))==1) rev = true;
             String revisionDate= task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE));
             boolean comp = false;
-            if(task.getColumnIndexOrThrow(SLDbAdapter.KEY_COMPLETED)==1) comp = true;
+            if(task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_COMPLETED))==1) comp = true;
             int feelingsStars = task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGSSTARS);
             String feelings = task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGS));
             mDbHelper.updateTask(mTaskId, type,title, explanation, date,mark,rev,revisionDate, comp, feelingsStars, feelings, taskSubject);
