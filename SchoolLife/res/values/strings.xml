@@ -57,5 +57,6 @@
     <string name="exam">Exam</string>
     <string name="exercise">Exercise</string>
     <string name="type">Type</string>
+    <string name="edit_task">Edit Task</string>
 
 </resources>

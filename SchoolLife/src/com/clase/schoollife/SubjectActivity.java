@@ -142,6 +142,7 @@ public class SubjectActivity extends ListActivity {
         	info = (AdapterContextMenuInfo) item.getMenuInfo();
         	Intent i = new Intent(this, CreateTask.class);
             i.putExtra(SLDbAdapter.KEY_TASKID, info.id);
+            i.putExtra(SLDbAdapter.KEY_TASKSUBJECT, mSubjectId);
             startActivityForResult(i, ACTIVITY_EDIT);
         	return true;
         case DELETE_ID:

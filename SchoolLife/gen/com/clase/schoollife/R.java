@@ -99,6 +99,7 @@ public final class R {
         public static final int delete_database=0x7f050023;
         public static final int delete_tasks=0x7f050025;
         public static final int edit=0x7f050005;
+        public static final int edit_task=0x7f050030;
         public static final int exam=0x7f05002d;
         public static final int exercise=0x7f05002e;
         public static final int explanation=0x7f050012;

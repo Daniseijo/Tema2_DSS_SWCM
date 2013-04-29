@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
     private EditText mExplanationText;
     private TextView mDateText;
     private Long mSubjectId;
+    private boolean created;
     
     private SLDbAdapter mDbHelper;
     
@@ -56,7 +58,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 				showDatePickerDialog(v);
 			}
 		});
-		
+		created= true;
 		mTitleText= (EditText) findViewById(R.id.edit_title);
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
 		mDateText= (TextView) findViewById(R.id.edit_date);
@@ -66,7 +68,19 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
 		if(mTaskId == null){
 			Bundle extras = getIntent().getExtras();
-			mSubjectId= extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID): null;
+			try{
+				Long tryLong= extras.getLong(SLDbAdapter.KEY_TASKSUBJECT);
+			} catch(Exception e){
+				created =false;
+			}
+			if(!created){
+				mSubjectId= extras != null ? extras.getLong(SLDbAdapter.KEY_SUBJECTID): null;
+			} else{
+				mTaskId= extras.getLong(SLDbAdapter.KEY_TASKID);
+				mSubjectId=extras.getLong(SLDbAdapter.KEY_TASKSUBJECT);
+				actionBar.setTitle(R.string.edit_task);
+				populateFields();
+			}
 		}
 		
 		Button confirmButton=(Button) findViewById(R.id.button1);
@@ -80,22 +94,49 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		});
 	}
 	
+	@SuppressWarnings("deprecation")
+	private void populateFields() {
+        if (mSubjectId != null) {
+            Cursor task = mDbHelper.fetchTask(mTaskId);
+            startManagingCursor(task);
+            mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
+            mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
+            mDateText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE)));
+            //poner dato en Spinner
+            mTypeInt=task.getColumnIndexOrThrow(SLDbAdapter.KEY_TYPE);
+        }
+    }
+	
 	private void showDatePickerDialog(View v){
 		DialogFragment newFragment= new DatePickerFragment();
 		newFragment.show(getFragmentManager(), "datePicker");
 	}
-	
+	@SuppressWarnings("deprecation")
 	private void saveState() {
 		int type=mTypeInt;
         String title = mTitleText.getText().toString();
         String explanation= mExplanationText.getText().toString();
         String date= mDateText.getText().toString();
         Long taskSubject= mSubjectId;
-        if(title!=null){
-        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
-        	if (id > 0) {
-        		mTaskId = id;
-        	}
+        if(!created){
+	        if(title!=null){
+	        	long id = mDbHelper.createTask(type, title, explanation, date, -1, false, null, false, -1,null, taskSubject);
+	        	if (id > 0) {
+	        		mTaskId = id;
+	        	}
+	        }
+        } else{
+        	Cursor task = mDbHelper.fetchTask(mTaskId);
+            startManagingCursor(task);
+            double mark = task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK);
+            boolean rev = false;
+            if(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISION)==1) rev = true;
+            String revisionDate= task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE));
+            boolean comp = false;
+            if(task.getColumnIndexOrThrow(SLDbAdapter.KEY_COMPLETED)==1) comp = true;
+            int feelingsStars = task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGSSTARS);
+            String feelings = task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_FEELINGS));
+            mDbHelper.updateTask(mTaskId, type,title, explanation, date,mark,rev,revisionDate, comp, feelingsStars, feelings, taskSubject);
         }
     }
 	
