@@ -1,15 +1,13 @@
 package com.clase.schoollife;
 
-import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
 public class DatePickerFragment extends DialogFragment
 	implements DatePickerDialog.OnDateSetListener {
@@ -28,10 +26,15 @@ public class DatePickerFragment extends DialogFragment
 	
 	@Override
 	public void onDateSet(DatePicker view, int year, int month, int day) {
-		TextView fecha = (TextView) getActivity().findViewById(R.id.edit_date);
-		Calendar myCalendar = new GregorianCalendar(year, month, day);
-		fecha.setText(DateFormat.getDateInstance().format(myCalendar.getTime()));
-		CreateTask ct= (CreateTask) getActivity();
-		ct.setTimeMili(myCalendar.getTime().getTime());
+		showTimePickerDialog(view, year, month, day);
+	}
+	
+	public void showTimePickerDialog(View v, int year, int month, int day) {
+		int[] date = {year , month, day};
+	    DialogFragment newFragment = new TimePickerFragment();
+	    Bundle newBundle = new Bundle();
+	    newBundle.putIntArray("date", date);
+	    newFragment.setArguments(newBundle);
+	    newFragment.show(getFragmentManager(), "timePicker");
 	}
 }

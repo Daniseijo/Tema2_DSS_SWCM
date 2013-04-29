@@ -32,7 +32,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
     private boolean mCreated;
     private Spinner mSpinner;
     
-    private SLDbAdapter mDbHelper;
+    private SLDbAdapter mDbHelper;   
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
 		mDateText= (TextView) findViewById(R.id.edit_date);
 		mTime=Calendar.getInstance().getTime().getTime();
-		mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
+		mDateText.setText(DateFormat.getDateTimeInstance().format(new Date(mTime)));
 		mTypeInt = 0;
 		
 		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
@@ -100,7 +100,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
         mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
         mTime=task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE));
-        mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
+        mDateText.setText(DateFormat.getDateTimeInstance().format(new Date(mTime)));
     	mTypeInt=task.getInt(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TYPE));
         mSpinner.setSelection(mTypeInt);
         
@@ -108,6 +108,10 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 	public void setTimeMili(long time){
 		mTime=time;
 	}
+	
+    public void setDateText (Calendar cal) {
+    	mDateText.setText(DateFormat.getDateTimeInstance().format(cal.getTime()));
+    }
 	
 	private void showDatePickerDialog(View v){
 		DialogFragment newFragment= new DatePickerFragment();
