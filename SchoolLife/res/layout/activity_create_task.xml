@@ -29,7 +29,7 @@
         android:layout_alignLeft="@+id/view_date"
         android:layout_below="@+id/edit_title"
         android:layout_marginTop="10dp"
-        android:text="@string/explanation" />
+        android:text="@string/description" />
 
     <EditText
         android:id="@+id/edit_explanation"
@@ -38,7 +38,7 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
         android:ems="10"
-        android:hint="@string/explanation"
+        android:hint="@string/description"
         android:inputType="textCapWords" />
 
     <TextView
@@ -62,15 +62,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textIsSelectable="false" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_date"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
-        android:text="@string/confirm_button" />
-
     <Spinner
         android:id="@+id/task_type"
         android:layout_width="fill_parent"
@@ -93,10 +84,19 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edit_date"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/view_date"
+        android:layout_alignLeft="@+id/edit_date"
+        android:layout_below="@+id/edit_date"
         android:text="@string/change_date" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="@string/confirm_button" />
+
 </RelativeLayout>
 
  </ScrollView>

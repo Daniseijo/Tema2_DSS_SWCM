@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">School Life</string>
     <string name="settings">Opciones</string>
     <string name="add">Añadir</string>
     <string name="no_subject">Pulsa + para añadir una Nueva Asignatura</string>
-    <string name="no_task">Pulsa + para añadir una nueva Tarea</string>
+    <string name="no_task">Pulsa + para añadir una Nueva Tarea</string>
     <string name="edit">Editar</string>
     <string name="help">Ayuda</string>
-    <string name="classroom">Aula</string>
-    <string name="subject">Asignatura</string>
-    <string name="professor">Profesor</string>
-    <string name="abbreviation">Abreviatura</string>
+    <string name="classroom"><b>Aula</b></string>
+    <string name="subject"><b>Asignatura</b></string>
+    <string name="professor"><b>Profesor</b></string>
+    <string name="abbreviation"><b>Abreviatura</b></string>
     <string name="new_subject_title">Nueva Asignatura</string>
     <string name="confirm_button">Confirmar</string>
     <string name="delete">Borrar</string>
     <string name="new_task_title">Nueva Tarea</string>
-    <string name="task">Tarea</string>
-    <string name="tasks">Tareas</string>
-    <string name="title">Título</string>
-    <string name="explanation">Explicación</string>
-    <string name="date">Fecha</string>
-    <string name="mark">Nota</string>
+    <string name="task"><b>Tarea</b></string>
+    <string name="tasks"><b>Tareas</b></string>
+    <string name="title"><b>Título</b></string>
+    <string name="description"><b>Descripción</b></string>
+    <string name="date"><b>Fecha</b></string>
+    <string name="mark"><b>Nota</b></string>
     <string name="revision">Revisión</string>
-    <string name="revision_date">Fecha de revisión</string>
-    <string name="completed">Completado</string>
-    <string name="feelings">Sensaciones</string>
-    <string name="delete_all">Delete All</string>
+    <string name="revision_date"><b>Fecha de Revisión</b></string>
+    <string name="completed"><b>Completado</b></string>
+    <string name="feelings"><b>Sensaciones</b></string>
+    <string name="delete_all">Borrar Todo</string>
     
-    <string name="help_about_title">\n<b>Sobre SchoolLife:</b></string>
-    <string name="help_about">\tversión 1.0</string>
-    <string name="help_authors_title">\n<b>Autores:</b></string>
+    <string name="help_about_title">\n<b>Acerca de SchoolLife:</b></string>
+    <string name="help_about">\tversin 1.0</string>
+    <string name="help_authors_title">\n<b>Autores</b></string>
     <string name="help_authors">\tDaniel Sánchez Seijo\n\tJosé Santos Sánchez Sánchez</string>
-    <string name="help_contact_title">\n<b>Información de contacto:</b></string>
+    <string name="help_contact_title">\n<b>Información de Contacto:</b></string>
     <string name="help_contact">\tdaniseijo12@alumnos.upm.es\n\tjs.sanchez@alumnos.upm.es</string>
-    <string name="help_usage_title">\n<b>Funcionamiento de la App:</b></string>
+    <string name="help_usage_title">\n<b>¿Cómo utilizar la app?</b></string>
     <string name="help_usage">\tSchool Life te ayuda a llevar un seguimiento minucioso de los
  exámenes y tareas que tengas en tu colegio o universidad. \n\tPodrás crear tus asignaturas con los
  profesores y aulas simplemente pulsando + en el menú principal. También podrás añadir
@@ -41,8 +42,21 @@
  mismo. \n\tAnota tus sensaciones al salir de los exámenes para saber posteriormente como te fue.</string>
     
     <string name="delete_database">Borrar Base de Datos</string>
-    <string name="delete_tasks">Borrar todas las Tareas de esta Asignatura</string>
-    <string name="database_deleted">Base de Datos borrada</string>
-    <string name="tasks_deleted">Tareas de esta Asignatura borradas</string>
+    <string name="database_deleted">Base de Datos Borrada</string>
+    <string name="delete_tasks">Borrar todas las tareas de la Asignatura</string>
+    <string name="tasks_deleted">Tareas de la Asignatura Borradas</string>
+
+    <string-array name="tasks_array">
+        <item>Examen</item>
+        <item>Ejercicio</item>
+    </string-array>
     
+    <string name="title_activity_options">OptionsActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="change_date">Change Date</string>
+    <string name="exam">Exam</string>
+    <string name="exercise">Exercise</string>
+    <string name="type"><b>Type</b></string>
+    <string name="edit_task">Edit Task</string>
+
 </resources>

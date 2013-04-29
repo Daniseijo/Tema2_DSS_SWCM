@@ -14,10 +14,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/subject" />
+
     <TextView
         android:id="@+id/view_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:text="" />
     
     <TextView
@@ -28,6 +30,7 @@
         android:id="@+id/view_professor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:text="" />
     
     <TextView
@@ -38,6 +41,7 @@
         android:id="@+id/view_classroom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:text="" />
     
     <TextView
