@@ -18,14 +18,14 @@
     <string name="new_task_title">New Task</string>
     <string name="task">Task</string>
     <string name="tasks">Tasks</string>
-    <string name="title">Title</string>
-    <string name="explanation">Explanation</string>
-    <string name="date">Date</string>
-    <string name="mark">Mark</string>
+    <string name="title"><b>Title</b></string>
+    <string name="explanation"><b>Explanation</b></string>
+    <string name="date"><b>Date</b></string>
+    <string name="mark"><b>Mark</b></string>
     <string name="revision">Revision</string>
-    <string name="revision_date">Revision date</string>
+    <string name="revision_date"><b>Revision date</b></string>
     <string name="completed">Completed</string>
-    <string name="feelings">Feelings</string>
+    <string name="feelings"><b>Feelings</b></string>
     <string name="title_activity_subject">Title Activity Subject</string>
     <string name="delete_all">Delete All</string>
     
@@ -56,7 +56,7 @@
     <string name="change_date">Change Date</string>
     <string name="exam">Exam</string>
     <string name="exercise">Exercise</string>
-    <string name="type">Type</string>
+    <string name="type"><b>Type</b></string>
     <string name="edit_task">Edit Task</string>
 
 </resources>
