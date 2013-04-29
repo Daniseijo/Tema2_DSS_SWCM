@@ -1,5 +1,8 @@
 package com.clase.schoollife;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +10,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ public class TaskActivity extends Activity {
 	private Long mTaskId;
 	private Long mSubjectId;
 	
+	private long mTime;
 	private int mTypeInt;
 	private TextView mTypeText;
 	private String mTitleText;
@@ -52,8 +54,6 @@ public class TaskActivity extends Activity {
 		mRevisionDate = (TextView) findViewById(R.id.view_revision_date);
 		mFeelingsText = (EditText) findViewById(R.id.edit_feelings);
 		
-		Button confirmButton=(Button) findViewById(R.id.button1);
-		
 	    mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
 		if(mTaskId == null){
 			Bundle extras = getIntent().getExtras();
@@ -66,14 +66,6 @@ public class TaskActivity extends Activity {
 		}
 		
 		populateFields();
-		confirmButton.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				setResult(RESULT_OK);
-				saveState();
-				finish();
-			}
-		});
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -88,7 +80,9 @@ public class TaskActivity extends Activity {
             	mTypeText.setText(R.string.exercise);
             }
             mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
-            mDateText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE)));
+            
+            mTime = task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE));
+            mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
             
     		mMarkText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_MARK)));
     		mRevisionDate.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_REVISIONDATE)));
@@ -100,7 +94,7 @@ public class TaskActivity extends Activity {
 		int type=mTypeInt;
         String title = mTitleText;
         String explanation= mExplanationText.getText().toString();
-        String date= mDateText.getText().toString();
+        Long date= mTime;
         Long taskSubject= mSubjectId;
         int mark = Integer.parseInt(mMarkText.getText().toString());
         String revisionDate= mRevisionDate.getText().toString();

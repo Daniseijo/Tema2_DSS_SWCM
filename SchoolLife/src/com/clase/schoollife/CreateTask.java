@@ -2,6 +2,7 @@ package com.clase.schoollife;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 public class CreateTask extends Activity implements OnItemSelectedListener {
 	
+	private long mTime;
 	private Long mTaskId;
 	private int mTypeInt;
 	private EditText mTitleText;
@@ -63,7 +65,8 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		mExplanationText= (EditText) findViewById(R.id.edit_explanation);
 		mDateText= (TextView) findViewById(R.id.edit_date);
 		mTypeInt=0;
-		mDateText.setText(DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
+		mTime=Calendar.getInstance().getTime().getTime();
+		mDateText.setText(DateFormat.getDateInstance().format(new Date(mTime)));
 		
 		mTaskId= (savedInstanceState == null) ? null : (Long) savedInstanceState.getSerializable(SLDbAdapter.KEY_TASKID);
 		if(mTaskId == null){
@@ -101,11 +104,14 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
             startManagingCursor(task);
             mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
             mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
-            mDateText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE)));
+            mDateText.setText(DateFormat.getDateInstance().format(new Date((task.getLong(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE))))));
             //poner dato en Spinner
             mTypeInt=task.getColumnIndexOrThrow(SLDbAdapter.KEY_TYPE);
         }
     }
+	public void setTimeMili(long time){
+		mTime=time;
+	}
 	
 	private void showDatePickerDialog(View v){
 		DialogFragment newFragment= new DatePickerFragment();
@@ -116,7 +122,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		int type=mTypeInt;
         String title = mTitleText.getText().toString();
         String explanation= mExplanationText.getText().toString();
-        String date= mDateText.getText().toString();
+        long date = mTime;
         Long taskSubject= mSubjectId;
         if(!created){
 	        if(title!=null){
