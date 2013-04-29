@@ -2,18 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/scrollView1"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:layout_alignParentBottom="true"
-	android:layout_marginBottom="42dp"
-	android:layout_toRightOf="@+id/textView3" >
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" >
         
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="508dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:scrollbarAlwaysDrawVerticalTrack="true"
-    android:scrollbars="vertical|horizontal"
     tools:context=".TaskActivity" >
 
     <TextView
@@ -136,15 +131,6 @@
         android:layout_alignRight="@+id/TextView01"
         android:text="@string/change_date" />
 
-    <CheckBox
-        android:id="@+id/edit_completed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="14dp"
-        android:layout_toLeftOf="@+id/button1"
-        android:text="@string/completed" />
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -160,14 +146,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textView6" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="@string/confirm_button" />
-
     <EditText
         android:id="@+id/edit_feelings"
         android:layout_width="wrap_content"
@@ -177,6 +155,14 @@
         android:ems="10"
         android:hint="@string/feelings"
         android:inputType="textMultiLine" />
+
+    <CheckBox
+        android:id="@+id/edit_completed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/view_revision_date"
+        android:layout_below="@+id/button2"
+        android:text="@string/completed" />
 
 </RelativeLayout>
 </ScrollView>

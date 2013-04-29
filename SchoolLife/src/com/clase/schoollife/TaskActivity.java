@@ -1,19 +1,18 @@
 package com.clase.schoollife;
 
-import android.os.Bundle;
 import android.app.ActionBar;
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TextView;
 
-public class TaskActivity extends ListActivity {
+public class TaskActivity extends Activity {
 	
 	private SLDbAdapter mDbHelper;
 	private Long mTaskId;
@@ -21,7 +20,8 @@ public class TaskActivity extends ListActivity {
 	
 	private int mTypeInt;
 	private TextView mTypeText;
-	private TextView mTitleText;
+	private String mTitleText;
+	//private TextView mTitleText;
     private TextView mExplanationText;
     private TextView mDateText;
 	private EditText mMarkText;
@@ -45,7 +45,6 @@ public class TaskActivity extends ListActivity {
 	    mDbHelper= new SLDbAdapter(this);
 	    mDbHelper.open();
 	    //Lo ponemos en el título de la Task
-	    //mTitleText= (TextView) findViewById(R.id.view_title);
 	    mTypeText= (TextView) findViewById(R.id.view_type);
 		mExplanationText= (TextView) findViewById(R.id.view_explanation);
 		mDateText= (TextView) findViewById(R.id.view_date);
@@ -61,12 +60,12 @@ public class TaskActivity extends ListActivity {
 			mTaskId = extras != null ? extras.getLong(SLDbAdapter.KEY_TASKID) : null;
 			mSubjectId= extras != null ? extras.getLong(SLDbAdapter.KEY_TASKSUBJECT) : null;
 			Cursor task = mDbHelper.fetchTask(mTaskId);
-			actionBar.setTitle(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
+			mTitleText = task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE));
+			actionBar.setTitle(mTitleText);
 			
 		}
 		
 		populateFields();
-		registerForContextMenu(getListView());
 		confirmButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -88,7 +87,6 @@ public class TaskActivity extends ListActivity {
             } else{
             	mTypeText.setText(R.string.exercise);
             }
-            mTitleText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_TITLE)));
             mExplanationText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_EXPLANATION)));
             mDateText.setText(task.getString(task.getColumnIndexOrThrow(SLDbAdapter.KEY_DATE)));
             
@@ -100,7 +98,7 @@ public class TaskActivity extends ListActivity {
 	
 	private void saveState() {
 		int type=mTypeInt;
-        String title = mTitleText.getText().toString();
+        String title = mTitleText;
         String explanation= mExplanationText.getText().toString();
         String date= mDateText.getText().toString();
         Long taskSubject= mSubjectId;
