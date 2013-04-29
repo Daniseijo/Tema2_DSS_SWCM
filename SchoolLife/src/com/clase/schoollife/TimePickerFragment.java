@@ -26,8 +26,14 @@ public  class TimePickerFragment extends DialogFragment implements TimePickerDia
 	public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 		int [] date = getArguments().getIntArray("date");
 		Calendar myCalendar = new GregorianCalendar(date[0], date[1], date[2], hourOfDay, minute);
-		CreateTask ct= (CreateTask) getActivity();
-		ct.setDateText(myCalendar);
-		ct.setTimeMili(myCalendar.getTime().getTime());
+		if (getActivity().getClass().equals(CreateTask.class)) {
+			CreateTask ct= (CreateTask) getActivity();
+			ct.setDateText(myCalendar);
+			ct.setTimeMili(myCalendar.getTime().getTime());
+		} else if (getActivity().getClass().equals(TaskActivity.class)) {
+			TaskActivity ct= (TaskActivity) getActivity();
+			ct.setDateText(myCalendar);
+			ct.setTimeMili(myCalendar.getTime().getTime());
+		}
 	}
 }

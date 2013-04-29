@@ -105,6 +105,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
         mSpinner.setSelection(mTypeInt);
         
     }
+	
 	public void setTimeMili(long time){
 		mTime=time;
 	}
@@ -117,6 +118,7 @@ public class CreateTask extends Activity implements OnItemSelectedListener {
 		DialogFragment newFragment= new DatePickerFragment();
 		newFragment.show(getFragmentManager(), "datePicker");
 	}
+	
 	@SuppressWarnings("deprecation")
 	private void saveState() {
 		int type=mTypeInt;
