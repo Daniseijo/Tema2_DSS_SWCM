@@ -27,14 +27,18 @@
     <string name="feelings">Sensaciones</string>
     <string name="delete_all">Delete All</string>
     
-    <string name="help_about_title">\nSobre SchoolLife:</string>
+    <string name="help_about_title">\n<b>Sobre SchoolLife:</b></string>
     <string name="help_about">\tversión 1.0</string>
-    <string name="help_authors_title">\nAutores:</string>
+    <string name="help_authors_title">\n<b>Autores:</b></string>
     <string name="help_authors">\tDaniel Sánchez Seijo\n\tJosé Santos Sánchez Sánchez</string>
-    <string name="help_contact_title">\nInformación de contacto:</string>
+    <string name="help_contact_title">\n<b>Información de contacto:</b></string>
     <string name="help_contact">\tdaniseijo12@alumnos.upm.es\n\tjs.sanchez@alumnos.upm.es</string>
-    <string name="help_usage_title">\nFuncionamiento de la App:</string>
-    <string name="help_usage">\tInfo de uso</string>
+    <string name="help_usage_title">\n<b>Funcionamiento de la App:</b></string>
+    <string name="help_usage">\tSchool Life te ayuda a llevar un seguimiento minucioso de los
+ exámenes y tareas que tengas en tu colegio o universidad. \n\tPodrás crear tus asignaturas con los
+ profesores y aulas simplemente pulsando + en el menú principal. También podrás añadir
+ los ejercicios o exámenes dentro de cada una de las asignaturas de la misma manera y puntuarlas tú
+ mismo. \n\tAnota tus sensaciones al salir de los exámenes para saber posteriormente como te fue.</string>
     
     <string name="delete_database">Borrar Base de Datos</string>
     <string name="delete_tasks">Borrar todas las Tareas de esta Asignatura</string>

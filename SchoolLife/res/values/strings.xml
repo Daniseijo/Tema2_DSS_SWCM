@@ -29,14 +29,14 @@
     <string name="title_activity_subject">Title Activity Subject</string>
     <string name="delete_all">Delete All</string>
     
-    <string name="help_about_title">\nAbout SchoolLife:</string>
+    <string name="help_about_title">\n<b>About SchoolLife:</b></string>
     <string name="help_about">\tversion 1.0</string>
-    <string name="help_authors_title">\nAuthors:</string>
+    <string name="help_authors_title">\n<b>Authors</b></string>
     <string name="help_authors">\tDaniel Sánchez Seijo\n\tJosé Santos Sánchez Sánchez</string>
-    <string name="help_contact_title">\nContact information:</string>
+    <string name="help_contact_title">\n<b>Contact information:</b></string>
     <string name="help_contact">\tdaniseijo12@alumnos.upm.es\n\tjs.sanchez@alumnos.upm.es</string>
-    <string name="help_usage_title">\nUsage</string>
-    <string name="help_usage">\tInfo de uso</string>
+    <string name="help_usage_title">\n<b>Usage</b></string>
+    <string name="help_usage">\tSchool Life help you to manage </string>
     
     <string name="delete_database">Delete Database</string>
     <string name="database_deleted">Database deleted</string>
